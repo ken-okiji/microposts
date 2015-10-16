@@ -1,7 +1,22 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update, :show]
   
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      #保存に成功した場合はメッセージを出してエディットページ表示
+      flash.now[:success] = "ユーザー情報を編集しました。"
+      render 'edit'
+    else
+      #保存に失敗した場合はメッセージを出してエディットページ表示
+      flash.now[:alert] = "ユーザー情報の保存に失敗しました。"
+      render 'edit'
+    end
+  end
+
   def show
-    @user = User.find(params[:id])
   end
   
   def new
@@ -23,6 +38,10 @@ class UsersController < ApplicationController
   def user_params
     #params[:user]のパラメータで name,email,password,password_confirmationのみを許可する。
     #返り値は {name: "入力されたname", email: "入力されたemail", password: "入力されたpassword", password_confirmation: "入力されたpassword_confirmation"}
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :area, :password_confirmation)
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
 end
