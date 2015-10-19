@@ -17,6 +17,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @microposts = @user.microposts #ユーザーの全投稿を代入
   end
   
   def new
