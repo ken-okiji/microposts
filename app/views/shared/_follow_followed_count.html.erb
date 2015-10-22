@@ -1,0 +1,9 @@
+<% @user ||= current_user %>
+<ul class="list-group">
+  <li class="list-group-item">
+    <a href="<%= followings_user_path(@user) %>"><strong><%= @user.following_users.count %></strong> フォロー</a>
+  </li>
+  <li class="list-group-item">
+    <a href="<%= followers_user_path(@user) %>"><strong><%= @user.follower_users.count %></strong> フォロワー</a>
+  </li>
+</ul>

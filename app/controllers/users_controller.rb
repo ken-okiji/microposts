@@ -1,6 +1,20 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show]
   
+  def followings
+    @title = "フォローリスト"
+    @user = User.find(params[:id])
+    @users = @user.following_users
+    @message = "フォローしていません"
+  end
+  
+  def followers
+    @title = "フォロワーリスト"
+    @user = User.find(params[:id])
+    @users = @user.follower_users
+    @message = "フォローされていません"
+  end
+  
   def edit
   end
 
