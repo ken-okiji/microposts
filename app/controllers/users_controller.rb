@@ -29,8 +29,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @microposts = @user.microposts #ユーザーの全投稿を代入
-    @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc).page(params[:page])
+    @microposts = @user.microposts.page(params[:page]) #ユーザーの全投稿を代入
   end
   
   def new
