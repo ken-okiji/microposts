@@ -35,6 +35,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
+#拡張：画像投稿
+gem 'carrierwave'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
