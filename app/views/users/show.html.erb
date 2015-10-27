@@ -15,7 +15,7 @@
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>
-        <%= paginate @pagenation %>
+        <%= paginate @feed_items %>
       </ol>
     <% end %>
   </div>
