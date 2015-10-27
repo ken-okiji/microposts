@@ -1,16 +1,14 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :followings, :followers, :show]
   
   def followings
     @title = "フォローリスト"
-    @user = User.find(params[:id])
     @users = @user.following_users
     @message = "フォローしていません"
   end
   
   def followers
     @title = "フォロワーリスト"
-    @user = User.find(params[:id])
     @users = @user.follower_users
     @message = "フォローされていません"
   end
@@ -31,8 +29,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @microposts = @user.microposts #ユーザーの全投稿を代入
+    @pagenation = Micropost.page(params[:page])
   end
   
   def new

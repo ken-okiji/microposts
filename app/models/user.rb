@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+                    
+  validates :area, presence: true, length: { maximum: 50 }, on: :update
+  
   has_secure_password
   has_many :microposts  #それぞれのユーザーは複数の投稿を持つことができる。
   
@@ -37,4 +40,5 @@ class User < ActiveRecord::Base
   def feed_items
     Micropost.where(user_id: following_user_ids + [self.id])
   end
+  
 end
